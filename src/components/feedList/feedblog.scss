@@ -1,0 +1,15 @@
+.feedBlog {
+    .cardItem {
+        .cardContent {
+            //word-break: break-all;
+            word-wrap: break-word;
+            
+            a {
+                color: #90caf9
+            }
+            img {
+                max-width: 100%;
+            }            
+        }
+    }
+}
