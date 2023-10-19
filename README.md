@@ -1,6 +1,6 @@
 # Feed Reader
 
-Rss reader with data source coming from Supabase PostgreSQL tables. 
+Rss reader with data source coming from Supabase PostgreSQL tables. </br>
 Rss contents are downloaded periodically by using Supabase cron job 
 
 Technology stack:
