@@ -17,11 +17,6 @@ type Props = {
 
 const TreeList = ({onTreeNodeSelected}:Props) => {
   const rssQueryResult = useRssQuery();
-
-  const onNodeSelected = (event:ActiveTreeNode) => {
-    rssQueryResult.refetch()
-    onTreeNodeSelected(event)
-  }
   
   const renderTree = (nodes: RenderTree) => (
     <TreeItem
@@ -48,7 +43,7 @@ const TreeList = ({onTreeNodeSelected}:Props) => {
           }
         </Box>
       }
-      onClick={() => onNodeSelected({is_group: nodes.children != undefined, id: nodes.id})}
+      onClick={() => onTreeNodeSelected({is_group: nodes.children != undefined, id: nodes.id})}
     >
       {Array.isArray(nodes.children)
         ? nodes.children.map((node) => renderTree(node))

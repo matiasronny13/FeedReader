@@ -7,7 +7,7 @@ function useRssUpsert() {
     const queryClient = useQueryClient()
     return useMutation({
         mutationFn: async (data:Rss) => {
-            return await client.from("rss")            
+            return await client?.from("rss")            
                         .upsert(data)
                         .select()
         },

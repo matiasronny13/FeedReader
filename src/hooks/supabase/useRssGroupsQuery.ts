@@ -6,7 +6,7 @@ const useRssGroupsQuery = () => {
     const key = ['RssGroupsQuery'];
    
     return useQuery(key, async () => {
-      return await client.from("rss_group")
+      return await client?.from("rss_group")
                    .select("id, name")
                    .throwOnError()
                    .then((result) => { 

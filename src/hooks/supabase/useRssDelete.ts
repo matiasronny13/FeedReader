@@ -6,8 +6,8 @@ function useRssDelete() {
     const queryClient = useQueryClient()
     return useMutation({
         mutationFn: async (id:number) => {
-            await client.from("rss_items").delete().eq('rss_id', id)
-            await client.from("rss").delete().eq('id', id)
+            await client?.from("rss_items").delete().eq('rss_id', id)
+            await client?.from("rss").delete().eq('id', id)
             return true
         },
         onSuccess: () => {

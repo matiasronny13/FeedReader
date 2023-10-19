@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useSupabase from "./useSupabase";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export function downloadRssItems(client: SupabaseClient, rssId: number) {
-  return client.functions.invoke("edge_rss", {
+export async function downloadRssItems(client: SupabaseClient|null, rssId: number) {
+  return await client?.functions.invoke("edge_rss", {
     body: JSON.stringify({ ids: [rssId] })
   })
 }
@@ -13,7 +13,7 @@ export default function useRssItemsDownload(rssId: number) {
   const key = ['useRssItemsDownload', rssId];
 
   return useQuery(key, async () => {
-    return downloadRssItems(client, rssId)
+    return await downloadRssItems(client, rssId)
   }, 
   {
     // staleTime: Infinity,

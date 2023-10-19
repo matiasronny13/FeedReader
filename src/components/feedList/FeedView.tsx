@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import FeedBlog from "../../components/feedList/FeedBlog";
 import { FeedItem } from "../../shared/types/FeedItem";
 import FeedMenu, { MENU_ITEMS } from "../../components/feedList/FeedMenu";
+import useRssItemsUpdateStatus from "../../hooks/supabase/useRssItemsUpdateStatus";
 
 type Props = {
     rssId: number
@@ -16,6 +17,7 @@ const FeedView = ({rssId}: Props) => {
   const [viewMode, setViewMode] = useState<MENU_ITEMS>(MENU_ITEMS.GRID_MODE)
   const rssItemQueryResult = useRssItemsQuery(rssId);
   const rssItemDownloadResult = useRssItemsDownload(rssId);
+  const rssItemsUpdateStatusResult = useRssItemsUpdateStatus()
 
   const MAX_RETRY = 6
   const fetchRetry = useRef<number>(MAX_RETRY);
@@ -43,6 +45,13 @@ const FeedView = ({rssId}: Props) => {
     window.addEventListener('keyup', onKeyup);
     return () => window.removeEventListener('keyup', onKeyup);
   }, [])
+
+  useEffect(() => {    
+    if (rssItemQueryResult.isFetched)
+    {
+      rssItemsUpdateStatusResult.mutate(rssId) 
+    }
+  }, [rssItemQueryResult.isFetched])
 
   useEffect(() => {
     viewModeRef.current = viewMode;

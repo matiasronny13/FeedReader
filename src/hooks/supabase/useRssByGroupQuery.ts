@@ -6,7 +6,7 @@ const useRssByGroupQuery = (group_id: string) => {
     const key = ['RssByGroupQuery', group_id];
 
     return useQuery(key, async () => {
-        return client.from("rss").select("*").eq("group_id", group_id).order("title")
+        return await client?.from("rss").select("*").eq("group_id", group_id).order("title")
             .throwOnError()
             .then((result) => result.data);
         }, 

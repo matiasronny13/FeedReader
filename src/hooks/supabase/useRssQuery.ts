@@ -6,7 +6,7 @@ function useRssQuery() {
     const key = ['RssQuery'];
    
     return useQuery(key, async () => {
-      return client.from("vw_rss_json")
+      return await client?.from("vw_rss_json")
                    .select("*")
                    .throwOnError()
                    .then((result) => { 

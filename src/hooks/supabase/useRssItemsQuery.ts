@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useSupabase from "./useSupabase";
 import { SupabaseClient } from "@supabase/supabase-js";
 
-export function getRssItems(client: SupabaseClient, rssId: number) {
-  return client.from("vw_rss_items_json")
+export async function getRssItems(client: SupabaseClient|null, rssId: number) {
+  return await client?.from("vw_rss_items_json")
     .select('id, title, link, pub_date, description, has_read')
     .eq("rss_id", rssId)
     .order("pub_date", { ascending: false })
@@ -17,7 +17,7 @@ export default function useRssItemsQuery(rssId: number) {
   const key = ['RssItemsQuery', rssId];
 
   return useQuery(key, async () => {
-    return getRssItems(client, rssId)
+    return await getRssItems(client, rssId)
   }, 
   {
     // staleTime: Infinity,
