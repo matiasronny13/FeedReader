@@ -9,6 +9,7 @@ Technology stack:
   * edge functions
   * PostgeSQL cron scheduler
 - React.js (Vite + TypeScript)
+- TanStack React Query
 - Sass
 - Material UI
 
