@@ -1,27 +1,32 @@
-# React + TypeScript + Vite
+# Feed Reader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Rss reader with data source coming from Supabase PostgreSQL tables. 
+Rss contents are downloaded periodically by using Supabase cron job 
 
-Currently, two official plugins are available:
+Technology stack:
+- Supabase
+  * js client
+  * edge functions
+  * PostgeSQL cron scheduler
+- React.js (Vite + TypeScript)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Feature:
+1. Tree Navigation
+2. View items in list mode
+   ![](https://github.com/ghostrepo00/FeedReader/blob/main/readme/feed_list.PNG)
 
-## Expanding the ESLint configuration
+3. View items in blog mode  <br>
+   In order to switch between these 2 modes, use shortcut CTRL + SHIFT + Z, or select the mode manually from action menu on the right side of the screen
+   ![](https://github.com/ghostrepo00/FeedReader/blob/main/readme/feed_blog.PNG)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+4. Feed menu
+     * Redownload RSS items from db
+     * change view mode 
+   ![](https://github.com/ghostrepo00/FeedReader/blob/main/readme/feed_menu.PNG)
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+5. Group list
+   Selecting group node will display all Rss feed under the group.
+     * Click ADD FEED to add new url
+     * Double click on the row to edit
+     * Click on delete icon to delete the url and its content
+   ![](https://github.com/ghostrepo00/FeedReader/blob/main/readme/group_list.PNG)
